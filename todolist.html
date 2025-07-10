@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <div class="paste">
+    <label class="txt">항목을 입력하세요.</label>
+    <input type="text" class="item">
+    <button onclick="listAdd()" class="add_btn">➕</button>
+  </div>
+  <ul class="list">
+    <li>
+      <p>공부하기</p>
+      <input type="button" value="❌" onclick="listDel(this)" class="del_btn">
+    </li>
+    <li>
+      <p>장보기</p>
+      <input type="button" value="❌" onclick="listDel(this)" class="del_btn">
+    </li>
+    <li>
+      <p>운동하기</p>
+      <input type="button" value="❌" onclick="listDel(this)" class="del_btn">
+    </li>
+  </ul>
+  <script>
+    function listAdd(){
+      let inputText = document.querySelector(".item").value;
+      let listGroup = document.querySelector(".list");
+
+      let listItem = document.createElement("li");
+      let listP = document.createElement("p");
+      let listBtn = document.createElement("input");
+
+      listGroup.appendChild(listItem);
+      listItem.appendChild(listP);
+      listP.innerHTML = inputText;
+      listItem.appendChild(listBtn);
+      listBtn.setAttribute("type", "button");
+      listBtn.setAttribute("value", "❌");
+      listBtn.classList.add("del_btn");
+
+      listBtn.addEventListener("click", function(){
+        listItem.remove();
+      });
+    }
+    function listDel(btn){
+      let listItem = btn.closest("li");
+      if(listItem){
+        listItem.remove();
+      }
+    }
+  </script>
+</body>
+</html>
